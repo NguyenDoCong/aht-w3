@@ -1,0 +1,25 @@
+# Bật mod_rewrite nếu chưa bật
+RewriteEngine On
+
+# Đặt RewriteBase để chỉ định đường dẫn cơ bản của ứng dụng
+RewriteBase /AHT_Nov/w3/to_do_list/
+
+# Đảm bảo rằng các URL không phải là tệp hoặc thư mục thật sẽ được chuyển hướng về index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Quy tắc cho route "login" với tham số username và password
+RewriteCond %{REQUEST_URI} ^/AHT_Nov/w3/to_do_list/login$
+RewriteCond %{QUERY_STRING} (^|&)username=([^&]*)&password=([^&]*)(&|$)
+RewriteRule ^login$ index.php [QSA,L]
+
+# Nếu muốn đảm bảo xử lý các yêu cầu của REST API (ví dụ: /tasks, /tasks/add, /tasks/edit)
+RewriteRule ^users/?$ index.php/list [L]
+
+# Trong file .htaccess
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
