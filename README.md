@@ -1,5 +1,8 @@
 ﻿# aht-w3
 
+## Mindmap
+![PHP](https://github.com/user-attachments/assets/e1d8fd9e-a4e0-47b6-b1e3-6b2ea89be6c8)
+
 ## Notes
 
 ### 2/12
